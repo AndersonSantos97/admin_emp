@@ -51,4 +51,25 @@ class EmpleadoController extends AbstractController
 
         return $this->redirectToRoute('app_empleado_index', [], Response::HTTP_SEE_OTHER);
     }
+
+    #[Route(path: '/create', name: 'app_empleado_create', methods: ['GET','POST'])]
+    
+    public function create(Request $request, EntityManagerInterface $entityManager ): Response
+    {
+        $empleado = new Empleado();
+        $form = $this->createForm(EmpleadoType::class, $empleado);
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid()){
+            $entityManager->persist(($empleado));
+            $entityManager->flush();
+
+            return $this->redirectToRoute('app_empleado_index', [], Response::HTTP_SEE_OTHER);
+        }
+
+        return $this->render('empleado/create.html.twig', [
+            'empleado' => $empleado,
+            'form' => $form,
+        ]);
+    }
 }

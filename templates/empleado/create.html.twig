@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title%} Crear Empleado {% endblock%}
+
+{% block body%}
+    <header>
+        <div>
+            <p>Ingresa datos del nuevo empleado</p>
+        </div>
+    </header>
+
+    <section>
+        {{include('empleado/_form.html.twig') }}
+    </section>
+
+{% endblock%}

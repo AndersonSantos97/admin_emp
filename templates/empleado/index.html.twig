@@ -10,6 +10,14 @@
     </header>
 
     <section>
+        <div>
+            <form action="{{ path('app_empleado_create') }}" method="GET">
+                <button type="submit" class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-700">
+                    Crear Nuevo Empleado
+                </button>
+            </form>
+        </div>
+
         <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
             <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                 <tr>
@@ -19,7 +27,7 @@
                     <th scope="col" class="px-6 py-3">DNI</th>
                     <th scope="col" class="px-6 py-3">Departamento</th>
                     <th scope="col" class="px-6 py-3">Cargo</th>
-                    <th scope="col" class="px-6 py-3">Acciones</th>
+                    <th scope="col" class="px-6 py-3" colspan="2">Acciones</th>
                 </tr>
             </thead>
             <tbody>
@@ -39,8 +47,9 @@
                             </form>
                         </td>
                         <td class="px-6 py-4">
-                            <form action="{{ path('app_empleado_delete', {'id':empleado.id}) }}" method="GET">
-                                <button type="submit" class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-700">
+                            <form action="{{ path('app_empleado_delete', {'id':empleado.id}) }}" method="post" onsubmit="return confirm('Are you sure you want to delete this item?');">
+                                <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ empleado.id) }}">
+                                <button class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-700">
                                     Eliminar
                                 </button>
                             </form>
