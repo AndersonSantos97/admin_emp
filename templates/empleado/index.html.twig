@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello EmpleadoController!{% endblock %}
+
+{% block body %}
+    <header>
+        <div>
+            <p>Lista de empleados</p>
+        </div>
+    </header>
+
+    <section>
+        <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+            <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                <tr>
+                    <th scope="col" class="px-6 py-3">Id</th>
+                    <th scope="col" class="px-6 py-3">Nombre</th>
+                    <th scope="col" class="px-6 py-3">Sexo</th>
+                    <th scope="col" class="px-6 py-3">DNI</th>
+                    <th scope="col" class="px-6 py-3">Departamento</th>
+                    <th scope="col" class="px-6 py-3">Cargo</th>
+                    <th scope="col" class="px-6 py-3">Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {%for empleado in empleados%}
+                    <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                        <td class="px-6 py-4">{{ empleado.id }}</td>
+                        <td class="px-6 py-4">{{ empleado.names }}</td>
+                        <td class="px-6 py-4">{{ empleado.sexo }}</td>
+                        <td class="px-6 py-4">{{ empleado.dni }}</td>
+                        <td class="px-6 py-4">{{ empleado.depto_desc }}</td>
+                        <td class="px-6 py-4">{{ empleado.cargo_desc }}</td>
+                        <td class="px-6 py-4">
+                            <form action="{{ path('app_empleado_edit', {'id':empleado.id}) }}" method="GET">
+                                <button type="submit" class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-700">
+                                    Editar
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
+                {% else %}
+                    <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                        <td class="px-6 py-4" colspan="6">no hay empleados para mostrar</td>
+                    </tr>
+                {% endfor %}
+
+            </tbody>
+        </table>
+    </section>
+{% endblock %}
+

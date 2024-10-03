@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Editar Empleado{% endblock %}
+
+{% block body%}
+    <header>
+        <div>
+            <p>Edita Datos del Empleado</p>
+        </div>
+    </header>
+
+    <section>
+        {{include('empleado/_form.html.twig', {'button_label': 'Actualizar'}) }}
+
+    </section>
+{% endblock%}
