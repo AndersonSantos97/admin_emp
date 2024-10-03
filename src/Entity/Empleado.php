@@ -24,11 +24,19 @@ class Empleado
     #[ORM\Column(length: 15)]
     private ?string $dni = null;
 
-    #[ORM\Column]
-    private ?int $depto = null;
+    // #[ORM\Column]
+    // private ?int $depto = null;
 
-    #[ORM\Column]
-    private ?int $cargo = null;
+    // #[ORM\Column]
+    // private ?int $cargo = null;
+
+    #[ORM\ManyToOne(targetEntity: DeptoEmpleado::class)]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?DeptoEmpleado $depto = null;
+
+    #[ORM\ManyToOne(targetEntity: CargoEmpleado::class)]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?CargoEmpleado $cargo = null;
 
     #[ORM\Column(length: 1)]
     private ?string $sexo = null;
@@ -74,30 +82,52 @@ class Empleado
         return $this;
     }
 
-    public function getDepto(): ?int
+    // public function getDepto(): ?int
+    // {
+    //     return $this->depto;
+    // }
+
+    // public function setDepto(int $depto): static
+    // {
+    //     $this->depto = $depto;
+
+    //     return $this;
+    // }
+
+    public function getDepto(): ?DeptoEmpleado
     {
         return $this->depto;
     }
 
-    public function setDepto(int $depto): static
+    public function setDepto(?DeptoEmpleado $depto): static
     {
         $this->depto = $depto;
-
         return $this;
     }
 
-    public function getCargo(): ?int
+    // public function getCargo(): ?int
+    // {
+    //     return $this->cargo;
+    // }
+
+    // public function setCargo(int $cargo): static
+    // {
+    //     $this->cargo = $cargo;
+
+    //     return $this;
+    // }
+
+    public function getCargo(): ?CargoEmpleado
     {
         return $this->cargo;
     }
 
-    public function setCargo(int $cargo): static
+    public function setCargo(?CargoEmpleado $cargo): static
     {
         $this->cargo = $cargo;
-
         return $this;
     }
-
+    
     public function getSexo(): ?string
     {
         return $this->sexo;

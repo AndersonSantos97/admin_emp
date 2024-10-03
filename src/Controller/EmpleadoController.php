@@ -40,4 +40,15 @@ class EmpleadoController extends AbstractController
             'form' => $form,
         ]);
     }
+
+    #[Route('/{id}', name:'app_empleado_delete', methods:['POST'])]
+    public function delete(Request $request, Empleado $empleado, EntityManagerInterface $entityManager): Response
+    {
+        if($this->isCsrfTokenValid('delete'.$empleado->getId(), $request->getPayload()->getString('_token'))){
+            $entityManager->remove($empleado);
+            $entityManager->flush();
+        }
+
+        return $this->redirectToRoute('app_empleado_index', [], Response::HTTP_SEE_OTHER);
+    }
 }
