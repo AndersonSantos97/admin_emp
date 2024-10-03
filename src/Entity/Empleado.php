@@ -82,17 +82,6 @@ class Empleado
         return $this;
     }
 
-    // public function getDepto(): ?int
-    // {
-    //     return $this->depto;
-    // }
-
-    // public function setDepto(int $depto): static
-    // {
-    //     $this->depto = $depto;
-
-    //     return $this;
-    // }
 
     public function getDepto(): ?DeptoEmpleado
     {
@@ -105,17 +94,6 @@ class Empleado
         return $this;
     }
 
-    // public function getCargo(): ?int
-    // {
-    //     return $this->cargo;
-    // }
-
-    // public function setCargo(int $cargo): static
-    // {
-    //     $this->cargo = $cargo;
-
-    //     return $this;
-    // }
 
     public function getCargo(): ?CargoEmpleado
     {

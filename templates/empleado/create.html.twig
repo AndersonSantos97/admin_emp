@@ -10,7 +10,15 @@
     </header>
 
     <section>
-        {{include('empleado/_form.html.twig') }}
+        {{include('empleado/_formc.html.twig') }}
     </section>
+
+    {% if form.vars.errors|length > 0 %}
+        <div class="text-red-500">
+            {{ form_errors(form) }}
+        </div>
+    {% endif %}
+
+    {{ form_errors(form) }}
 
 {% endblock%}

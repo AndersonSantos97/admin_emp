@@ -53,7 +53,6 @@ class EmpleadoController extends AbstractController
     }
 
     #[Route(path: '/create', name: 'app_empleado_create', methods: ['GET','POST'])]
-
     public function create(Request $request, EntityManagerInterface $entityManager ): Response
     {
         $empleado = new Empleado(); 
@@ -61,6 +60,7 @@ class EmpleadoController extends AbstractController
         $form->handleRequest($request);
 
         if($form->isSubmitted() && $form->isValid()){
+            dd($empleado);
             $entityManager->persist($empleado);
             $entityManager->flush();
 
