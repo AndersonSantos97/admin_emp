@@ -20,7 +20,7 @@ class EmpleadoRepository extends ServiceEntityRepository
         return $this->createQueryBuilder('e')
         ->leftJoin('App\Entity\DeptoEmpleado','d','WITH','e.depto = d.id')
         ->leftJoin('App\Entity\CargoEmpleado','c','WITH','e.cargo = c.id')
-        ->addSelect('e.names','e.id','e.dni','e.sexo','d.depto_desc', 'c.cargo_desc')
+        ->addSelect('e.names','e.id','e.dni','e.sexo','e.nacionalidad','d.depto_desc', 'c.cargo_desc')
         ->getQuery()
         ->getResult();
     }

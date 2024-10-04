@@ -41,6 +41,9 @@ class Empleado
     #[ORM\Column(length: 1)]
     private ?string $sexo = null;
 
+    #[ORM\Column(length: 5)]
+    private ?string $nacionalidad = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -114,6 +117,18 @@ class Empleado
     public function setSexo(string $sexo): static
     {
         $this->sexo = $sexo;
+
+        return $this;
+    }
+
+    public function getNacionalidad(): ?string
+    {
+        return $this->nacionalidad;
+    }
+
+    public function setNacionalidad(string $nacionalidad): static
+    {
+        $this->nacionalidad = $nacionalidad;
 
         return $this;
     }

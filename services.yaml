@@ -1,0 +1,5 @@
+# config/services.yaml
+services:
+    App\Service\NationalityService:
+        arguments:
+            $client: '@httclient'

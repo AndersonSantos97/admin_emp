@@ -27,6 +27,7 @@
                     <th scope="col" class="px-6 py-3">DNI</th>
                     <th scope="col" class="px-6 py-3">Departamento</th>
                     <th scope="col" class="px-6 py-3">Cargo</th>
+                    <th scope="col" class="px-6 py-3">Nacionalidad</th>
                     <th scope="col" class="px-6 py-3" colspan="2">Acciones</th>
                 </tr>
             </thead>
@@ -39,6 +40,7 @@
                         <td class="px-6 py-4">{{ empleado.dni }}</td>
                         <td class="px-6 py-4">{{ empleado.depto_desc }}</td>
                         <td class="px-6 py-4">{{ empleado.cargo_desc }}</td>
+                        <td class="px-6 py-4">{{ empleado.nacionalidad }}</td>
                         <td class="px-6 py-4">
                             <form action="{{ path('app_empleado_edit', {'id':empleado.id}) }}" method="GET">
                                 <button type="submit" class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-700">
