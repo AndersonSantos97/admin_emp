@@ -41,7 +41,7 @@ class EmpleadoController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name:'app_empleado_delete', methods:['POST'])]
+    #[Route('delete/{id}', name:'app_empleado_delete', methods:['POST'])]
     public function delete(Request $request, Empleado $empleado, EntityManagerInterface $entityManager): Response
     {
         if($this->isCsrfTokenValid('delete'.$empleado->getId(), $request->getPayload()->getString('_token'))){
@@ -52,23 +52,43 @@ class EmpleadoController extends AbstractController
         return $this->redirectToRoute('app_empleado_index', [], Response::HTTP_SEE_OTHER);
     }
 
-    #[Route(path: '/create', name: 'app_empleado_create', methods: ['GET','POST'])]
-    public function create(Request $request, EntityManagerInterface $entityManager ): Response
+    // #[Route(path: '/new', name: 'app_empleado_new', methods: ['GET','POST'])]
+    // public function new(Request $request, EntityManagerInterface $entityManager ): Response
+    // {
+    //     $empleado = new Empleado(); 
+    //     $form = $this->createForm(EmpleadoType::class, $empleado);
+
+    //     $form->handleRequest($request);
+
+    //     if($form->isSubmitted() && $form->isValid()){
+    //         $entityManager->persist($empleado);
+    //         $entityManager->flush();
+
+    //         return $this->redirectToRoute('app_empleado_index', [], Response::HTTP_SEE_OTHER);
+    //     }else{
+    //         return $this->render('empleado/create.html.twig', [
+    //             'empleado' => $empleado,
+    //             'form' => $form,
+    //         ]);     
+    //     }
+
+    // }
+    #[Route(path: 'empleado/new', name: 'app_empleado_new', methods: ['GET', 'POST'])]
+    public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
-        $empleado = new Empleado(); 
-        $form = $this->createForm(EmpleadoType::class, $empleado);
+        $usuario = new Empleado();
+        $form = $this->createForm(EmpleadoType::class, $usuario);
         $form->handleRequest($request);
 
-        if($form->isSubmitted() && $form->isValid()){
-            dd($empleado);
-            $entityManager->persist($empleado);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager->persist($usuario);
             $entityManager->flush();
 
             return $this->redirectToRoute('app_empleado_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->render('empleado/create.html.twig', [
-            'empleado' => $empleado,
+        return $this->render('empleado/new.html.twig', [
+            'usuario' => $usuario,
             'form' => $form,
         ]);
     }

@@ -23,7 +23,7 @@
     </header>
 
     <section class="m-4">
-        {{include('empleado/_formc.html.twig') }}
+        {{include('empleado/_formc.html.twig', {'button_label': 'Guardar'}) }}
     </section>
 
     {% if form.vars.errors|length > 0 %}
